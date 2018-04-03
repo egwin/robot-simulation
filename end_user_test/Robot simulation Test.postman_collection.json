@@ -1,0 +1,792 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Robot simulation Test",
+		"_postman_id": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test Case 1",
+			"description": "",
+			"item": [
+				{
+					"name": "Start at 0,0,E",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 201 || responseCode.code === 500;",
+									"if (responseCode.code === 201) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains response\"] = \"response\" in body;",
+									"    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "<base_url>/app/start?place=0,0,E",
+							"protocol": "https",
+							"host": [
+								"quko92tp86",
+								"execute-api",
+								"ap-southeast-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"app",
+								"start"
+							],
+							"query": [
+								{
+									"key": "place",
+									"value": "0,0,E",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "start robot simulation with placing 0,0,E"
+					},
+					"response": []
+				},
+				{
+					"name": "Offline",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;",
+									"if (responseCode.code === 200) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains response\"] = \"response\" in body;",
+									"    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "<base_url>/app/power?state=offline",
+							"protocol": "https",
+							"host": [
+								"quko92tp86",
+								"execute-api",
+								"ap-southeast-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"app",
+								"power"
+							],
+							"query": [
+								{
+									"key": "state",
+									"value": "offline",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "change robot power state"
+					},
+					"response": []
+				},
+				{
+					"name": "Show location at 0,0,E",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;",
+									"if (responseCode.code === 200) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains location x,y,d\"] = 'x' in body.location && 'y' in body.location && 'd' in body.location;",
+									"    tests[\"check x\"] = body.location.x === 0;",
+									"    tests[\"check y\"] = body.location.y === 0;",
+									"    tests[\"check direction\"] = body.location.d === \"E\";",
+									"",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "<base_url>/status/report",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get robot status without params"
+					},
+					"response": []
+				},
+				{
+					"name": "Perform MOVE->MOVE->LEFT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 202 || responseCode.code === 500;",
+									"if (responseCode.code === 202) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains response\"] = \"response\" in body;",
+									"    body.response.forEach(function(res){",
+									"        tests[\"test response result\"] = res === \"OK\" || res === \"NG\";",
+									"    });",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "<base_url>/ctrl/action?cmd=move,move,left",
+							"protocol": "https",
+							"host": [
+								"quko92tp86",
+								"execute-api",
+								"ap-southeast-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"ctrl",
+								"action"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "move,move,left",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "Perform action commands"
+					},
+					"response": []
+				},
+				{
+					"name": "Online",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;",
+									"if (responseCode.code === 200) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains response\"] = \"response\" in body;",
+									"    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "<base_url>/app/power?state=online",
+							"protocol": "https",
+							"host": [
+								"quko92tp86",
+								"execute-api",
+								"ap-southeast-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"app",
+								"power"
+							],
+							"query": [
+								{
+									"key": "state",
+									"value": "online",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "change robot power state"
+					},
+					"response": []
+				},
+				{
+					"name": "Show Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;",
+									"if (responseCode.code === 200) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains location x,y,d\"] = 'x' in body.location && 'y' in body.location && 'd' in body.location;",
+									"    tests[\"check x\"] = body.location.x === 2;",
+									"    tests[\"check y\"] = body.location.y === 0;",
+									"    tests[\"check direction\"] = body.location.d === \"N\";",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "<base_url>/status/report",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get robot status without params"
+					},
+					"response": []
+				},
+				{
+					"name": "End",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;",
+									"if (responseCode.code === 200) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains response\"] = \"response\" in body;",
+									"    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "<base_url>/app/end",
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "end robot simulation"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Case 2",
+			"description": "",
+			"item": [
+				{
+					"name": "Start at 3,3,W with 8x8 size",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 201 || responseCode.code === 500;",
+									"if (responseCode.code === 201) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains response\"] = \"response\" in body;",
+									"    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "<base_url>/app/start?bsize=8x8&place=3,3,W",
+							"protocol": "https",
+							"host": [
+								"quko92tp86",
+								"execute-api",
+								"ap-southeast-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"app",
+								"start"
+							],
+							"query": [
+								{
+									"key": "bsize",
+									"value": "8x8",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "place",
+									"value": "3,3,W",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "start robot simulation with placing 0,0,E"
+					},
+					"response": []
+				},
+				{
+					"name": "Show location at 3,3,W",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;",
+									"if (responseCode.code === 200) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains location x,y,d\"] = 'x' in body.location && 'y' in body.location && 'd' in body.location;",
+									"    tests[\"check x\"] = body.location.x === 3;",
+									"    tests[\"check y\"] = body.location.y === 3;",
+									"    tests[\"check direction\"] = body.location.d === \"W\";",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "<base_url>/status/report",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get robot status without params"
+					},
+					"response": []
+				},
+				{
+					"name": "Perform BACK",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 202 || responseCode.code === 500;",
+									"if (responseCode.code === 202) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains response\"] = \"response\" in body;",
+									"    body.response.forEach(function(res){",
+									"        tests[\"test response result\"] = res === \"OK\";",
+									"    });",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "<base_url>/ctrl/action?cmd=back",
+							"protocol": "https",
+							"host": [
+								"quko92tp86",
+								"execute-api",
+								"ap-southeast-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"ctrl",
+								"action"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "back",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "Perform action commands"
+					},
+					"response": []
+				},
+				{
+					"name": "Show location at 4,3,W",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;",
+									"if (responseCode.code === 200) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains location x,y,d\"] = 'x' in body.location && 'y' in body.location && 'd' in body.location;",
+									"    tests[\"check x\"] = body.location.x === 4;",
+									"    tests[\"check y\"] = body.location.y === 3;",
+									"    tests[\"check direction\"] = body.location.d === \"W\";",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "<base_url>/status/report",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get robot status without params"
+					},
+					"response": []
+				},
+				{
+					"name": "Perform RIGHT->RIGHT->MOVE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 202 || responseCode.code === 500;",
+									"if (responseCode.code === 202) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains response\"] = \"response\" in body;",
+									"    body.response.forEach(function(res){",
+									"        tests[\"test response result\"] = res === \"OK\";",
+									"    });",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "<base_url>/ctrl/action?cmd=right,right,move",
+							"protocol": "https",
+							"host": [
+								"quko92tp86",
+								"execute-api",
+								"ap-southeast-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"ctrl",
+								"action"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "right,right,move",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "Perform action commands"
+					},
+					"response": []
+				},
+				{
+					"name": "Show location at 5,3,E",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;",
+									"if (responseCode.code === 200) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains location x,y,d\"] = 'x' in body.location && 'y' in body.location && 'd' in body.location;",
+									"    tests[\"check x\"] = body.location.x === 5;",
+									"    tests[\"check y\"] = body.location.y === 3;",
+									"    tests[\"check direction\"] = body.location.d === \"E\";",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "<base_url>/status/report",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get robot status without params"
+					},
+					"response": []
+				},
+				{
+					"name": "Start at 3,3,W with 2x2 size",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 400;",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");",
+									"tests[\"body contains url\"] = responseBody.has(\"url\");",
+									"tests[\"body contains api_endpoint\"] = responseBody.has(\"api_endpoint\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "<base_url>/app/start?bsize=2x2&place=3,3,W",
+							"protocol": "https",
+							"host": [
+								"quko92tp86",
+								"execute-api",
+								"ap-southeast-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"app",
+								"start"
+							],
+							"query": [
+								{
+									"key": "bsize",
+									"value": "2x2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "place",
+									"value": "3,3,W",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "start robot simulation with placing 0,0,E"
+					},
+					"response": []
+				},
+				{
+					"name": "Start at 2,2,E with 2x2 size",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 201 || responseCode.code === 500;",
+									"if (responseCode.code === 201) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains response\"] = \"response\" in body;",
+									"    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "<base_url>/app/start?bsize=2x2&place=2,2,E",
+							"protocol": "https",
+							"host": [
+								"quko92tp86",
+								"execute-api",
+								"ap-southeast-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"app",
+								"start"
+							],
+							"query": [
+								{
+									"key": "bsize",
+									"value": "2x2",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "place",
+									"value": "2,2,E",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "start robot simulation with placing 0,0,E"
+					},
+					"response": []
+				},
+				{
+					"name": "Perform MOVE",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 202 || responseCode.code === 500;",
+									"if (responseCode.code === 202) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains response\"] = \"response\" in body;",
+									"    body.response.forEach(function(res){",
+									"        tests[\"test response result\"] = res === \"NG\";",
+									"    });",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": {
+							"raw": "<base_url>/ctrl/action?cmd=move",
+							"protocol": "https",
+							"host": [
+								"quko92tp86",
+								"execute-api",
+								"ap-southeast-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"dev",
+								"api",
+								"ctrl",
+								"action"
+							],
+							"query": [
+								{
+									"key": "cmd",
+									"value": "move",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "Perform action commands"
+					},
+					"response": []
+				},
+				{
+					"name": "End",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;",
+									"if (responseCode.code === 200) {",
+									"    var body = JSON.parse(responseBody);",
+									"    tests[\"Body contains response\"] = \"response\" in body;",
+									"    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"",
+									"}",
+									"tests[\"body contains msg\"] = responseBody.has(\"msg\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "<base_url>/app/end",
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"description": "end robot simulation"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

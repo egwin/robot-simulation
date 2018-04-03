@@ -58,6 +58,7 @@ provider:
     EVENT_ALARM: ontimeTriggerEvent
     SQS_QUEUE: robot-task-queue
     SQS_DEAD_QUEUE: robot-dead-letter-queue
+    ONTIME_TRIGGER_LAMBDA: robot-dev-ontimeTrigger
     LOG_LEVEL: info
 
 functions:

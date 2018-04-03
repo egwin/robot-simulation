@@ -37,7 +37,7 @@ npm run test
 > coverage folder is created, open coverage/index.html to view the report
 
 #
-###### Diagram
+###### Architecture Diagram
 ![Alt text](./architecture.png "Architecture")
 
 #
@@ -47,9 +47,5 @@ Refer to the [REST.md](REST.md) file for details
 
 #
 ###### End-user Test
-```sh
-  
-```
-
-#
-###### FAQ
+Using postman to test for API calls.
+Please find the collection and run test in "end_user_test" folder.

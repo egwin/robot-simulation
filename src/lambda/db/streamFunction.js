@@ -9,6 +9,17 @@ function alarmAction(enable) {
     winston.log("info", "alarmAction", process.env.EVENT_ALARM, enable);
     let cwevents = new AWS.CloudWatchEvents();
     if (enable) {
+        let lambda = new AWS.Lambda();
+        let params = {
+            FunctionName: process.env.ONTIME_TRIGGER_LAMBDA,
+            InvokeArgs: "{}"
+        };
+        lambda.invokeAsync(params)
+            .promise()
+            .then(function(data) {
+            winston.log("info", "invokeAsync ONTIME_TRIGGER_LAMBDA", data);
+        });
+        
         cwevents.enableRule({Name: process.env.EVENT_ALARM}, function(err, data) {
             if (err) {
                 winston.log("error", "enableRule Error", err.stack);

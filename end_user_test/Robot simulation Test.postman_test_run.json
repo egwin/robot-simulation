@@ -1,0 +1,2398 @@
+{
+	"id": "de6201a0-c904-f48e-ae0a-c2815e52cc6d",
+	"name": "Robot simulation Test",
+	"allTests": [],
+	"timestamp": 1522752617167,
+	"collection_id": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 5000,
+	"count": 1,
+	"collection": {
+		"id": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+		"name": "Robot simulation Test",
+		"description": "",
+		"order": [],
+		"folders": [
+			{
+				"name": "Test Case 1",
+				"description": "",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"collection": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"order": [
+					"40cbc551-13ed-4439-74ab-25edb250939f",
+					"ffb15427-e8ec-98d7-6c30-8badd594b6d9",
+					"c6fa3b90-aebd-5a00-df43-48a33eacde15",
+					"3520dd99-71e7-86bb-5cf7-7199926805b2",
+					"6bac828a-da69-166b-a54e-6cb374249280",
+					"0dc07c3a-e3c5-1791-0d79-b843c7aed556",
+					"aad539d7-732c-b9a8-ca2b-a1aa32c5823a"
+				],
+				"owner": 0,
+				"folders_order": [],
+				"createdAt": 1522745972975,
+				"updatedAt": 1522745972975,
+				"id": "9decfd5c-d8f7-0f41-e932-a856ce411dcc",
+				"collection_id": "ffa0f359-4089-948d-4c4d-66c11d08021a"
+			},
+			{
+				"name": "Test Case 2",
+				"description": "",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"collection": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"order": [
+					"a37dda84-7f55-8fb1-3a9b-a42b7f46ed5e",
+					"feec7360-f374-2fe0-0539-bffc8d7a902e",
+					"413767c0-bb24-9474-4c3c-8ce237784b46",
+					"c4c97142-d02e-39a8-53da-57c9ccf5819b",
+					"7c4b626f-c5e0-ca28-a837-f1bef4d2cf78",
+					"1a67c4ef-0091-1389-4100-80c0c32cc149",
+					"4c2bde63-fd53-60bd-1af1-e5cba4bf53c6",
+					"5299b420-58ff-c399-d997-baec44b4540a",
+					"9c57350c-b48b-8de4-a67a-204eed7a917b",
+					"e2663beb-4fb0-e99b-b601-aa026240a65e"
+				],
+				"owner": 0,
+				"folders_order": [],
+				"createdAt": 1522747101828,
+				"updatedAt": 1522747101828,
+				"id": "7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9",
+				"collection_id": "ffa0f359-4089-948d-4c4d-66c11d08021a"
+			}
+		],
+		"folders_order": [
+			"9decfd5c-d8f7-0f41-e932-a856ce411dcc",
+			"7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9"
+		],
+		"requests": [
+			{
+				"id": "0dc07c3a-e3c5-1791-0d79-b843c7aed556",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/status/report",
+				"folder": "9decfd5c-d8f7-0f41-e932-a856ce411dcc",
+				"queryParams": [],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "GET",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;\nif (responseCode.code === 200) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains location x,y,d\"] = 'x' in body.location && 'y' in body.location && 'd' in body.location;\n    tests[\"check x\"] = body.location.x === 2;\n    tests[\"check y\"] = body.location.y === 0;\n    tests[\"check direction\"] = body.location.d === \"N\";\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");\n",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522746772732,
+				"name": "Show Status",
+				"description": "Get robot status without params",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": [],
+				"isFromCollection": true
+			},
+			{
+				"id": "1a67c4ef-0091-1389-4100-80c0c32cc149",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/status/report",
+				"folder": "7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9",
+				"queryParams": [],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "GET",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;\nif (responseCode.code === 200) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains location x,y,d\"] = 'x' in body.location && 'y' in body.location && 'd' in body.location;\n    tests[\"check x\"] = body.location.x === 5;\n    tests[\"check y\"] = body.location.y === 3;\n    tests[\"check direction\"] = body.location.d === \"E\";\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");\n",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522747612582,
+				"name": "Show location at 5,3,E",
+				"description": "Get robot status without params",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": []
+			},
+			{
+				"id": "3520dd99-71e7-86bb-5cf7-7199926805b2",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/ctrl/action?cmd=move,move,left",
+				"folder": "9decfd5c-d8f7-0f41-e932-a856ce411dcc",
+				"queryParams": [
+					{
+						"key": "cmd",
+						"value": "move,move,left",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					}
+				],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 202 || responseCode.code === 500;\nif (responseCode.code === 202) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains response\"] = \"response\" in body;\n    body.response.forEach(function(res){\n        tests[\"test response result\"] = res === \"OK\" || res === \"NG\";\n    });\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");\n",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522746587889,
+				"name": "Perform MOVE->MOVE->LEFT",
+				"description": "Perform action commands",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": [],
+				"isFromCollection": true
+			},
+			{
+				"id": "40cbc551-13ed-4439-74ab-25edb250939f",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/app/start?place=0,0,E",
+				"folder": "9decfd5c-d8f7-0f41-e932-a856ce411dcc",
+				"queryParams": [
+					{
+						"key": "place",
+						"value": "0,0,E",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					}
+				],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"version": 2,
+				"tests": "tests[\"response code\"] = responseCode.code === 201 || responseCode.code === 500;\nif (responseCode.code === 201) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains response\"] = \"response\" in body;\n    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522745643148,
+				"name": "Start at 0,0,E",
+				"description": "start robot simulation with placing 0,0,E",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": [],
+				"isFromCollection": true
+			},
+			{
+				"id": "413767c0-bb24-9474-4c3c-8ce237784b46",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/ctrl/action?cmd=back",
+				"folder": "7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9",
+				"queryParams": [
+					{
+						"key": "cmd",
+						"value": "back",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					}
+				],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 202 || responseCode.code === 500;\nif (responseCode.code === 202) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains response\"] = \"response\" in body;\n    body.response.forEach(function(res){\n        tests[\"test response result\"] = res === \"OK\";\n    });\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");\n",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522748386647,
+				"name": "Perform BACK",
+				"description": "Perform action commands",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": []
+			},
+			{
+				"id": "4c2bde63-fd53-60bd-1af1-e5cba4bf53c6",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/app/start?bsize=2x2&place=3,3,W",
+				"folder": "7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9",
+				"queryParams": [
+					{
+						"key": "bsize",
+						"value": "2x2",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					},
+					{
+						"key": "place",
+						"value": "3,3,W",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					}
+				],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"version": 2,
+				"tests": "tests[\"response code\"] = responseCode.code === 400;\ntests[\"body contains msg\"] = responseBody.has(\"msg\");\ntests[\"body contains url\"] = responseBody.has(\"url\");\ntests[\"body contains api_endpoint\"] = responseBody.has(\"api_endpoint\");",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522747839866,
+				"name": "Start at 3,3,W with 2x2 size",
+				"description": "start robot simulation with placing 0,0,E",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": []
+			},
+			{
+				"id": "5299b420-58ff-c399-d997-baec44b4540a",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/app/start?bsize=2x2&place=2,2,E",
+				"folder": "7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9",
+				"queryParams": [
+					{
+						"key": "bsize",
+						"value": "2x2",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					},
+					{
+						"key": "place",
+						"value": "2,2,E",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					}
+				],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"version": 2,
+				"tests": "tests[\"response code\"] = responseCode.code === 201 || responseCode.code === 500;\nif (responseCode.code === 201) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains response\"] = \"response\" in body;\n    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522748298321,
+				"name": "Start at 2,2,E with 2x2 size",
+				"description": "start robot simulation with placing 0,0,E",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": []
+			},
+			{
+				"id": "6bac828a-da69-166b-a54e-6cb374249280",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/app/power?state=online",
+				"folder": "9decfd5c-d8f7-0f41-e932-a856ce411dcc",
+				"queryParams": [
+					{
+						"key": "state",
+						"value": "online",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					}
+				],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;\nif (responseCode.code === 200) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains response\"] = \"response\" in body;\n    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522746590435,
+				"name": "Online",
+				"description": "change robot power state",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": [],
+				"isFromCollection": true
+			},
+			{
+				"id": "7c4b626f-c5e0-ca28-a837-f1bef4d2cf78",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/ctrl/action?cmd=right,right,move",
+				"folder": "7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9",
+				"queryParams": [
+					{
+						"key": "cmd",
+						"value": "right,right,move",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					}
+				],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 202 || responseCode.code === 500;\nif (responseCode.code === 202) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains response\"] = \"response\" in body;\n    body.response.forEach(function(res){\n        tests[\"test response result\"] = res === \"OK\";\n    });\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");\n",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522748371796,
+				"name": "Perform RIGHT->RIGHT->MOVE",
+				"description": "Perform action commands",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": []
+			},
+			{
+				"id": "9c57350c-b48b-8de4-a67a-204eed7a917b",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/ctrl/action?cmd=move",
+				"folder": "7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9",
+				"queryParams": [
+					{
+						"key": "cmd",
+						"value": "move",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					}
+				],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 202 || responseCode.code === 500;\nif (responseCode.code === 202) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains response\"] = \"response\" in body;\n    body.response.forEach(function(res){\n        tests[\"test response result\"] = res === \"NG\";\n    });\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");\n",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522748379446,
+				"name": "Perform MOVE",
+				"description": "Perform action commands",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": []
+			},
+			{
+				"id": "a37dda84-7f55-8fb1-3a9b-a42b7f46ed5e",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/app/start?bsize=8x8&place=3,3,W",
+				"folder": "7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9",
+				"queryParams": [
+					{
+						"key": "bsize",
+						"value": "8x8",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					},
+					{
+						"key": "place",
+						"value": "3,3,W",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					}
+				],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"version": 2,
+				"tests": "tests[\"response code\"] = responseCode.code === 201 || responseCode.code === 500;\nif (responseCode.code === 201) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains response\"] = \"response\" in body;\n    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522747413433,
+				"name": "Start at 3,3,W with 8x8 size",
+				"description": "start robot simulation with placing 0,0,E",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": []
+			},
+			{
+				"id": "aad539d7-732c-b9a8-ca2b-a1aa32c5823a",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/app/end",
+				"folder": "9decfd5c-d8f7-0f41-e932-a856ce411dcc",
+				"queryParams": [],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;\nif (responseCode.code === 200) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains response\"] = \"response\" in body;\n    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522744891583,
+				"name": "End",
+				"description": "end robot simulation",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": [],
+				"isFromCollection": true
+			},
+			{
+				"id": "c4c97142-d02e-39a8-53da-57c9ccf5819b",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/status/report",
+				"folder": "7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9",
+				"queryParams": [],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "GET",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;\nif (responseCode.code === 200) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains location x,y,d\"] = 'x' in body.location && 'y' in body.location && 'd' in body.location;\n    tests[\"check x\"] = body.location.x === 4;\n    tests[\"check y\"] = body.location.y === 3;\n    tests[\"check direction\"] = body.location.d === \"W\";\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");\n",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522747464063,
+				"name": "Show location at 4,3,W",
+				"description": "Get robot status without params",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": []
+			},
+			{
+				"id": "c6fa3b90-aebd-5a00-df43-48a33eacde15",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/status/report",
+				"folder": "9decfd5c-d8f7-0f41-e932-a856ce411dcc",
+				"queryParams": [],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "GET",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;\nif (responseCode.code === 200) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains location x,y,d\"] = 'x' in body.location && 'y' in body.location && 'd' in body.location;\n    tests[\"check x\"] = body.location.x === 0;\n    tests[\"check y\"] = body.location.y === 0;\n    tests[\"check direction\"] = body.location.d === \"E\";\n\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");\n",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522746762281,
+				"name": "Show location at 0,0,E",
+				"description": "Get robot status without params",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": [],
+				"isFromCollection": true
+			},
+			{
+				"id": "e2663beb-4fb0-e99b-b601-aa026240a65e",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/app/end",
+				"folder": "7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9",
+				"queryParams": [],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;\nif (responseCode.code === 200) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains response\"] = \"response\" in body;\n    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522744891583,
+				"name": "End",
+				"description": "end robot simulation",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": [],
+				"isFromCollection": true
+			},
+			{
+				"id": "feec7360-f374-2fe0-0539-bffc8d7a902e",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/status/report",
+				"folder": "7ce6a9c5-5e6a-e20f-3d8a-abe90161dfd9",
+				"queryParams": [],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "GET",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;\nif (responseCode.code === 200) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains location x,y,d\"] = 'x' in body.location && 'y' in body.location && 'd' in body.location;\n    tests[\"check x\"] = body.location.x === 3;\n    tests[\"check y\"] = body.location.y === 3;\n    tests[\"check direction\"] = body.location.d === \"W\";\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");\n",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522747345723,
+				"name": "Show location at 3,3,W",
+				"description": "Get robot status without params",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": []
+			},
+			{
+				"id": "ffb15427-e8ec-98d7-6c30-8badd594b6d9",
+				"headers": "",
+				"headerData": [],
+				"url": "<base_url>/app/power?state=offline",
+				"folder": "9decfd5c-d8f7-0f41-e932-a856ce411dcc",
+				"queryParams": [
+					{
+						"key": "state",
+						"value": "offline",
+						"equals": true,
+						"description": "",
+						"enabled": true
+					}
+				],
+				"preRequestScript": null,
+				"pathVariables": {},
+				"pathVariableData": [],
+				"method": "PUT",
+				"data": null,
+				"dataMode": "params",
+				"tests": "tests[\"response code\"] = responseCode.code === 200 || responseCode.code === 500;\nif (responseCode.code === 200) {\n    var body = JSON.parse(responseBody);\n    tests[\"Body contains response\"] = \"response\" in body;\n    tests[\"test response result\"] = body.response === \"OK\" || body.response === \"NG\"\n}\ntests[\"body contains msg\"] = responseBody.has(\"msg\");",
+				"currentHelper": "normal",
+				"helperAttributes": {},
+				"time": 1522745115558,
+				"name": "Offline",
+				"description": "change robot power state",
+				"collectionId": "ffa0f359-4089-948d-4c4d-66c11d08021a",
+				"responses": [],
+				"isFromCollection": true
+			}
+		],
+		"timestamp": 1522747076551,
+		"synced": false,
+		"syncedFilename": "",
+		"remote_id": 0,
+		"remoteLink": "",
+		"remoteLinkUpdatedAt": null,
+		"public": false,
+		"owner": 0,
+		"subscribed": false,
+		"createdAt": 1522747076551,
+		"updatedAt": "2018-04-03T09:39:52.540Z",
+		"write": true,
+		"published": false,
+		"favorite": false,
+		"permissions": {},
+		"syncedPermissions": {},
+		"sharedWithTeam": false
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [
+		{
+			"key": "echo_digest_realm",
+			"type": "text",
+			"value": "Users",
+			"enabled": true
+		},
+		{
+			"key": "echo_digest_nonce",
+			"type": "text",
+			"value": "gx8kDNwMI9UgRZYovOWVZf0O21jYnw5q",
+			"enabled": true
+		}
+	],
+	"results": [
+		{
+			"id": "40cbc551-13ed-4439-74ab-25edb250939f",
+			"name": "Start at 0,0,E",
+			"url": "<base_url>/app/start?place=0,0,E",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				488
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains response": true,
+					"test response result": true,
+					"body contains msg": true
+				}
+			],
+			"time": 488,
+			"totalRequestTime": 488,
+			"iterationResults": {}
+		},
+		{
+			"id": "ffb15427-e8ec-98d7-6c30-8badd594b6d9",
+			"name": "Offline",
+			"url": "<base_url>/app/power?state=offline",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				256
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains response": true,
+					"test response result": true,
+					"body contains msg": true
+				}
+			],
+			"time": 256,
+			"totalRequestTime": 256,
+			"iterationResults": {}
+		},
+		{
+			"id": "c6fa3b90-aebd-5a00-df43-48a33eacde15",
+			"name": "Show location at 0,0,E",
+			"url": "<base_url>/status/report",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains location x,y,d": true,
+				"check x": true,
+				"check y": true,
+				"check direction": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains location x,y,d": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check x": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check y": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check direction": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				317
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains location x,y,d": true,
+					"check x": true,
+					"check y": true,
+					"check direction": true,
+					"body contains msg": true
+				}
+			],
+			"time": 317,
+			"totalRequestTime": 317,
+			"iterationResults": {}
+		},
+		{
+			"id": "3520dd99-71e7-86bb-5cf7-7199926805b2",
+			"name": "Perform MOVE->MOVE->LEFT",
+			"url": "<base_url>/ctrl/action?cmd=move,move,left",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 202,
+				"name": "Accepted",
+				"detail": "The request has been accepted for processing, but the processing has not been completed. The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				829
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains response": true,
+					"test response result": true,
+					"body contains msg": true
+				}
+			],
+			"time": 829,
+			"totalRequestTime": 829,
+			"iterationResults": {}
+		},
+		{
+			"id": "6bac828a-da69-166b-a54e-6cb374249280",
+			"name": "Online",
+			"url": "<base_url>/app/power?state=online",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				385
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains response": true,
+					"test response result": true,
+					"body contains msg": true
+				}
+			],
+			"time": 385,
+			"totalRequestTime": 385,
+			"iterationResults": {}
+		},
+		{
+			"id": "0dc07c3a-e3c5-1791-0d79-b843c7aed556",
+			"name": "Show Status",
+			"url": "<base_url>/status/report",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains location x,y,d": true,
+				"check x": true,
+				"check y": true,
+				"check direction": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains location x,y,d": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check x": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check y": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check direction": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				258
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains location x,y,d": true,
+					"check x": true,
+					"check y": true,
+					"check direction": true,
+					"body contains msg": true
+				}
+			],
+			"time": 258,
+			"totalRequestTime": 258,
+			"iterationResults": {}
+		},
+		{
+			"id": "aad539d7-732c-b9a8-ca2b-a1aa32c5823a",
+			"name": "End",
+			"url": "<base_url>/app/end",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				258
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains response": true,
+					"test response result": true,
+					"body contains msg": true
+				}
+			],
+			"time": 258,
+			"totalRequestTime": 258,
+			"iterationResults": {}
+		},
+		{
+			"id": "a37dda84-7f55-8fb1-3a9b-a42b7f46ed5e",
+			"name": "Start at 3,3,W with 8x8 size",
+			"url": "<base_url>/app/start?bsize=8x8&place=3,3,W",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				198
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains response": true,
+					"test response result": true,
+					"body contains msg": true
+				}
+			],
+			"time": 198,
+			"totalRequestTime": 198,
+			"iterationResults": {}
+		},
+		{
+			"id": "feec7360-f374-2fe0-0539-bffc8d7a902e",
+			"name": "Show location at 3,3,W",
+			"url": "<base_url>/status/report",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains location x,y,d": true,
+				"check x": true,
+				"check y": true,
+				"check direction": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains location x,y,d": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check x": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check y": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check direction": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				319
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains location x,y,d": true,
+					"check x": true,
+					"check y": true,
+					"check direction": true,
+					"body contains msg": true
+				}
+			],
+			"time": 319,
+			"totalRequestTime": 319,
+			"iterationResults": {}
+		},
+		{
+			"id": "413767c0-bb24-9474-4c3c-8ce237784b46",
+			"name": "Perform BACK",
+			"url": "<base_url>/ctrl/action?cmd=back",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 202,
+				"name": "Accepted",
+				"detail": "The request has been accepted for processing, but the processing has not been completed. The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				722
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains response": true,
+					"test response result": true,
+					"body contains msg": true
+				}
+			],
+			"time": 722,
+			"totalRequestTime": 722,
+			"iterationResults": {}
+		},
+		{
+			"id": "c4c97142-d02e-39a8-53da-57c9ccf5819b",
+			"name": "Show location at 4,3,W",
+			"url": "<base_url>/status/report",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains location x,y,d": true,
+				"check x": true,
+				"check y": true,
+				"check direction": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains location x,y,d": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check x": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check y": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check direction": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				127
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains location x,y,d": true,
+					"check x": true,
+					"check y": true,
+					"check direction": true,
+					"body contains msg": true
+				}
+			],
+			"time": 127,
+			"totalRequestTime": 127,
+			"iterationResults": {}
+		},
+		{
+			"id": "7c4b626f-c5e0-ca28-a837-f1bef4d2cf78",
+			"name": "Perform RIGHT->RIGHT->MOVE",
+			"url": "<base_url>/ctrl/action?cmd=right,right,move",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 202,
+				"name": "Accepted",
+				"detail": "The request has been accepted for processing, but the processing has not been completed. The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				512
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains response": true,
+					"test response result": true,
+					"body contains msg": true
+				}
+			],
+			"time": 512,
+			"totalRequestTime": 512,
+			"iterationResults": {}
+		},
+		{
+			"id": "1a67c4ef-0091-1389-4100-80c0c32cc149",
+			"name": "Show location at 5,3,E",
+			"url": "<base_url>/status/report",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains location x,y,d": true,
+				"check x": true,
+				"check y": true,
+				"check direction": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains location x,y,d": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check x": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check y": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check direction": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				352
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains location x,y,d": true,
+					"check x": true,
+					"check y": true,
+					"check direction": true,
+					"body contains msg": true
+				}
+			],
+			"time": 352,
+			"totalRequestTime": 352,
+			"iterationResults": {}
+		},
+		{
+			"id": "4c2bde63-fd53-60bd-1af1-e5cba4bf53c6",
+			"name": "Start at 3,3,W with 2x2 size",
+			"url": "<base_url>/app/start?bsize=2x2&place=3,3,W",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
+			},
+			"tests": {
+				"response code": true,
+				"body contains msg": true,
+				"body contains url": true,
+				"body contains api_endpoint": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains url": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains api_endpoint": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				46
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"body contains msg": true,
+					"body contains url": true,
+					"body contains api_endpoint": true
+				}
+			],
+			"time": 46,
+			"totalRequestTime": 46,
+			"iterationResults": {}
+		},
+		{
+			"id": "5299b420-58ff-c399-d997-baec44b4540a",
+			"name": "Start at 2,2,E with 2x2 size",
+			"url": "<base_url>/app/start?bsize=2x2&place=2,2,E",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				142
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains response": true,
+					"test response result": true,
+					"body contains msg": true
+				}
+			],
+			"time": 142,
+			"totalRequestTime": 142,
+			"iterationResults": {}
+		},
+		{
+			"id": "9c57350c-b48b-8de4-a67a-204eed7a917b",
+			"name": "Perform MOVE",
+			"url": "<base_url>/ctrl/action?cmd=move",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 202,
+				"name": "Accepted",
+				"detail": "The request has been accepted for processing, but the processing has not been completed. The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				417
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains response": true,
+					"test response result": true,
+					"body contains msg": true
+				}
+			],
+			"time": 417,
+			"totalRequestTime": 417,
+			"iterationResults": {}
+		},
+		{
+			"id": "e2663beb-4fb0-e99b-b601-aa026240a65e",
+			"name": "End",
+			"url": "<base_url>/app/end",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				272
+			],
+			"allTests": [
+				{
+					"response code": true,
+					"Body contains response": true,
+					"test response result": true,
+					"body contains msg": true
+				}
+			],
+			"time": 272,
+			"totalRequestTime": 272,
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 78,
+	"totalFail": 0,
+	"totalTime": 5898,
+	"lifecycle": "done",
+	"willStop": false,
+	"requests": [
+		{
+			"name": "Start at 0,0,E",
+			"id": "40cbc551-13ed-4439-74ab-25edb250939f",
+			"url": "<base_url>/app/start?place=0,0,E",
+			"time": 488,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains response",
+				"test response result",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Offline",
+			"id": "ffb15427-e8ec-98d7-6c30-8badd594b6d9",
+			"url": "<base_url>/app/power?state=offline",
+			"time": 256,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains response",
+				"test response result",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Show location at 0,0,E",
+			"id": "c6fa3b90-aebd-5a00-df43-48a33eacde15",
+			"url": "<base_url>/status/report",
+			"time": 317,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains location x,y,d": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check x": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check y": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check direction": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains location x,y,d",
+				"check x",
+				"check y",
+				"check direction",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains location x,y,d": true,
+				"check x": true,
+				"check y": true,
+				"check direction": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Perform MOVE->MOVE->LEFT",
+			"id": "3520dd99-71e7-86bb-5cf7-7199926805b2",
+			"url": "<base_url>/ctrl/action?cmd=move,move,left",
+			"time": 829,
+			"responseCode": {
+				"code": 202,
+				"name": "Accepted",
+				"detail": "The request has been accepted for processing, but the processing has not been completed. The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains response",
+				"test response result",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Online",
+			"id": "6bac828a-da69-166b-a54e-6cb374249280",
+			"url": "<base_url>/app/power?state=online",
+			"time": 385,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains response",
+				"test response result",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Show Status",
+			"id": "0dc07c3a-e3c5-1791-0d79-b843c7aed556",
+			"url": "<base_url>/status/report",
+			"time": 258,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains location x,y,d": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check x": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check y": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check direction": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains location x,y,d",
+				"check x",
+				"check y",
+				"check direction",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains location x,y,d": true,
+				"check x": true,
+				"check y": true,
+				"check direction": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "End",
+			"id": "aad539d7-732c-b9a8-ca2b-a1aa32c5823a",
+			"url": "<base_url>/app/end",
+			"time": 258,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains response",
+				"test response result",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Start at 3,3,W with 8x8 size",
+			"id": "a37dda84-7f55-8fb1-3a9b-a42b7f46ed5e",
+			"url": "<base_url>/app/start?bsize=8x8&place=3,3,W",
+			"time": 198,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains response",
+				"test response result",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Show location at 3,3,W",
+			"id": "feec7360-f374-2fe0-0539-bffc8d7a902e",
+			"url": "<base_url>/status/report",
+			"time": 319,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains location x,y,d": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check x": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check y": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check direction": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains location x,y,d",
+				"check x",
+				"check y",
+				"check direction",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains location x,y,d": true,
+				"check x": true,
+				"check y": true,
+				"check direction": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Perform BACK",
+			"id": "413767c0-bb24-9474-4c3c-8ce237784b46",
+			"url": "<base_url>/ctrl/action?cmd=back",
+			"time": 722,
+			"responseCode": {
+				"code": 202,
+				"name": "Accepted",
+				"detail": "The request has been accepted for processing, but the processing has not been completed. The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains response",
+				"test response result",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Show location at 4,3,W",
+			"id": "c4c97142-d02e-39a8-53da-57c9ccf5819b",
+			"url": "<base_url>/status/report",
+			"time": 127,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains location x,y,d": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check x": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check y": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check direction": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains location x,y,d",
+				"check x",
+				"check y",
+				"check direction",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains location x,y,d": true,
+				"check x": true,
+				"check y": true,
+				"check direction": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Perform RIGHT->RIGHT->MOVE",
+			"id": "7c4b626f-c5e0-ca28-a837-f1bef4d2cf78",
+			"url": "<base_url>/ctrl/action?cmd=right,right,move",
+			"time": 512,
+			"responseCode": {
+				"code": 202,
+				"name": "Accepted",
+				"detail": "The request has been accepted for processing, but the processing has not been completed. The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains response",
+				"test response result",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Show location at 5,3,E",
+			"id": "1a67c4ef-0091-1389-4100-80c0c32cc149",
+			"url": "<base_url>/status/report",
+			"time": 352,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains location x,y,d": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check x": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check y": {
+					"pass": 1,
+					"fail": 0
+				},
+				"check direction": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains location x,y,d",
+				"check x",
+				"check y",
+				"check direction",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains location x,y,d": true,
+				"check x": true,
+				"check y": true,
+				"check direction": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Start at 3,3,W with 2x2 size",
+			"id": "4c2bde63-fd53-60bd-1af1-e5cba4bf53c6",
+			"url": "<base_url>/app/start?bsize=2x2&place=3,3,W",
+			"time": 46,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request",
+				"detail": "The request cannot be fulfilled due to bad syntax."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains url": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains api_endpoint": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"body contains msg",
+				"body contains url",
+				"body contains api_endpoint"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"body contains msg": true,
+				"body contains url": true,
+				"body contains api_endpoint": true
+			}
+		},
+		{
+			"name": "Start at 2,2,E with 2x2 size",
+			"id": "5299b420-58ff-c399-d997-baec44b4540a",
+			"url": "<base_url>/app/start?bsize=2x2&place=2,2,E",
+			"time": 142,
+			"responseCode": {
+				"code": 201,
+				"name": "Created",
+				"detail": "The request has been fulfilled and resulted in a new resource being created."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains response",
+				"test response result",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "Perform MOVE",
+			"id": "9c57350c-b48b-8de4-a67a-204eed7a917b",
+			"url": "<base_url>/ctrl/action?cmd=move",
+			"time": 417,
+			"responseCode": {
+				"code": 202,
+				"name": "Accepted",
+				"detail": "The request has been accepted for processing, but the processing has not been completed. The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains response",
+				"test response result",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			}
+		},
+		{
+			"name": "End",
+			"id": "e2663beb-4fb0-e99b-b601-aa026240a65e",
+			"url": "<base_url>/app/end",
+			"time": 272,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+			},
+			"testPassFailCounts": {
+				"response code": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Body contains response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"test response result": {
+					"pass": 1,
+					"fail": 0
+				},
+				"body contains msg": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"gridTitles": [
+				"response code",
+				"Body contains response",
+				"test response result",
+				"body contains msg"
+			],
+			"gridData": [
+				[
+					true,
+					true,
+					true,
+					true
+				]
+			],
+			"tests": {
+				"response code": true,
+				"Body contains response": true,
+				"test response result": true,
+				"body contains msg": true
+			}
+		}
+	],
+	"synced": false
+}

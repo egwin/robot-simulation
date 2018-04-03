@@ -48,7 +48,7 @@ module.exports.cmd = function(event, context, callback) {
         const response = {
             statusCode: 400,
             body: JSON.stringify({
-                message: "invalid input params",
+                msg: "invalid input params",
                 url: "<base_URL>/<api_endpoint>[?<query_params>]",
                 api_endpoint: {
                     action: {

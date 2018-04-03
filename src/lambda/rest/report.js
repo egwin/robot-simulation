@@ -60,7 +60,7 @@ module.exports.status = function(event, context, callback) {
         const response = {
             statusCode: 400,
             body: JSON.stringify({
-                message: "invalid url",
+                msg: "invalid url",
                 url: "<base_URL>/<api_endpoint>[?<query_params>]",
                 api_endpoint: {
                     report: {
