@@ -33,7 +33,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
             <state split_layout="SPLIT">
@@ -53,6 +53,16 @@
                 <folding />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,18 +124,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="constant.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/constant.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="51" column="2" selection-start-line="51" selection-start-column="2" selection-end-line="51" selection-end-column="2" />
-              <folding>
-                <marker date="1522726430465" expanded="true" signature="771:970" ph="{&quot;APP_DEFAULT&quot;: appDefault...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="dynamoDAO.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/database/dynamoDAO.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -170,7 +168,6 @@
       <list>
         <option value="$PROJECT_DIR$/test/hello/hello.spec.js" />
         <option value="$PROJECT_DIR$/.babelrc" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/rest/power.js" />
         <option value="$PROJECT_DIR$/src/database/dynamoDBOperation.js" />
         <option value="$PROJECT_DIR$/src/database/dynamodb-operation.js" />
@@ -213,6 +210,7 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/REST.md" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -391,12 +389,12 @@
       <workItem from="1522501878965" duration="8105000" />
       <workItem from="1522552981496" duration="2488000" />
       <workItem from="1522579488646" duration="20171000" />
-      <workItem from="1522635285789" duration="38233000" />
+      <workItem from="1522635285789" duration="38754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="225979000" />
+    <option name="totallyTimeSpent" value="226500000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="1" width="1382" height="744" extended-state="0" />
@@ -621,14 +619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/lambda/alarm/ontime.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="402">
@@ -819,6 +809,14 @@
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

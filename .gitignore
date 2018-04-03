@@ -4,6 +4,9 @@ node_modules
 # Serverless directories
 .serverless
 
+# webstorm
+.idea
+
 # code coverage directories
 coverage
 .nyc_output
