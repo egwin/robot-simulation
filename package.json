@@ -1,0 +1,38 @@
+{
+  "name": "robot-simulation",
+  "version": "1.0.0",
+  "description": "control robot movement in the given area units size",
+  "dependencies": {
+    "dynamodb-data-types": "=3.0.1",
+    "winston": "=2.4.1"
+  },
+  "devDependencies": {
+    "async": "^2.6.0",
+    "aws-sdk": "^2.213.1",
+    "aws-sdk-mock": "^1.7.0",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-runtime": "^6.26.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.0.4",
+    "nyc": "^11.6.0",
+    "serverless": "=1.26.1",
+    "serverless-webpack": "^5.1.0",
+    "webpack": "^4.2.0",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "scripts": {
+    "test": "nyc --reporter=html mocha --no-deprecation"
+  },
+  "nyc": {
+    "include": "src",
+    "exclude": [],
+    "all": true
+  },
+  "author": "egwin",
+  "license": "UNLICENSED",
+  "private": true
+}

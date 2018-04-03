@@ -1,0 +1,171 @@
+# Serverless!
+service: robot
+
+# Use serverless-webpack plugin to transpile ES5
+plugins:
+  - serverless-webpack
+
+# Configuration for serverless-webpack
+# Enable auto-packing of external modules
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+package:
+  individually: true
+
+# frameworkVersion: "=1.26.1"
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  profile: robotsimulate
+  stage: dev
+  region: ap-southeast-1
+
+  # iamRoleStatements
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - apigateway:*
+      Resource: "arn:aws:apigateway:ap-southeast-1:*:*"
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource: "arn:aws:dynamodb:ap-southeast-1:*:*"
+    - Effect: Allow
+      Action:
+        - cloudformation:*
+      Resource: "arn:aws:cloudformation:ap-southeast-1:*:*"
+    - Effect: Allow
+      Action:
+        - events:*
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - sqs:*
+      Resource: "arn:aws:sqs:ap-southeast-1:*:*"
+    - Effect: Allow
+      Action:
+        - lambda:*
+      Resource: "*"
+
+
+  # environment variables
+  environment:
+    DB_TABLE: robot-${opt:stage, self:provider.stage}
+    EVENT_ALARM: ontimeTriggerEvent
+    SQS_QUEUE: robot-task-queue
+    SQS_DEAD_QUEUE: robot-dead-letter-queue
+    LOG_LEVEL: info
+
+functions:
+  # init robot
+  app:
+    handler: src/lambda/rest/app.state
+    description: REST API, robot setup (start/end/power)
+    memorySize: 128
+    timeout: 15
+    events:
+      - http:
+          path: api/app/{endpoint}
+          method: put
+          cors: true
+          request:
+              parameters:
+                  paths:
+                      state: true
+
+  # user action
+  action:
+    handler: src/lambda/rest/action.cmd
+    description: REST API, control robot (move/left/right/back)
+    memorySize: 128
+    timeout: 15
+    events:
+      - http:
+          path: api/ctrl/{endpoint}
+          method: put
+          cors: true
+
+  # report status
+  report:
+    handler: src/lambda/rest/report.status
+    description: REST API, get robot status
+    memorySize: 128
+    timeout: 15
+    events:
+      - http:
+          path: api/status/{endpoint}
+          method: get
+          cors: true
+
+  # db stream trigger
+  streamFunction:
+    handler: src/lambda/db/streamFunction.invoke
+    description: enable or disable cloudwatch rules (ontimeTrigger)
+    memorySize: 128
+    timeout: 20
+    events:
+      - stream: arn:aws:dynamodb:ap-southeast-1:288329435957:table/robot-dev/stream/2018-03-29T08:46:38.993
+      - stream:
+        type: dynamodb
+        arn:
+          Fn::GetAtt:
+            - RobotSimulationDbTable
+            - StreamArn
+
+  # cloudwatch alarm
+  ontimeTrigger:
+    handler: src/lambda/alarm/ontime.trigger
+    description: process sqs message
+    memorySize: 128
+    timeout: 60   # 1 minute
+    events:
+      # Invoke Lambda function (every minute)
+      - schedule:
+          name: ${self:provider.environment.EVENT_ALARM}
+          rate: rate(1 minute)
+          enabled: false
+
+#resources:
+resources:
+  Resources:
+    # dynamodb
+    RobotSimulationDbTable:
+      Type: "AWS::DynamoDB::Table"
+      DeletionPolicy: Retain
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: nameTag
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: nameTag
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+        TableName: ${self:provider.environment.DB_TABLE}
+
+    # sqs
+    SqsTaskQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:provider.environment.SQS_QUEUE}
+        MessageRetentionPeriod: 1209600
+        VisibilityTimeout: 60
+        RedrivePolicy:
+          deadLetterTargetArn:
+            Fn::GetAtt:
+            - "SqsDeadLetterQueue"
+            - "Arn"
+          maxReceiveCount: 10
+
+    SqsDeadLetterQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:provider.environment.SQS_DEAD_QUEUE}
+        MessageRetentionPeriod: 1209600
