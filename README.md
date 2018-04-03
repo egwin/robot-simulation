@@ -11,8 +11,8 @@ npm install
 
 #
 ###### Setup
-Create AWS account and change the profile **robotsimulate** in serverless.yml
-(To deploy to the AWS by using serverless framework, you need to have an access 'aws_access_key_id' and 'aws_secret_access_key'.)
+To deploy to the AWS by using serverless framework, you need to have an access 'aws_access_key_id' and 'aws_secret_access_key'.
+So, you need to create AWS account and change the profile **robotsimulate** in serverless.yml
 -eg: file in "C:/Users/xxx/aws/credentials"
 ```sh 
 [robotsimulate]
@@ -29,14 +29,6 @@ serverless deploy
 > * need manual update the stream (streamFunction event) in serverless.yml and then "serverless deploy" again (due to serverless problem)
 
 #
-###### Test & Coverage
-Run unit test and generate code coverage report 
-```sh
-npm run test  
-```
-> coverage folder is created, open coverage/index.html to view the report
-
-#
 ###### Architecture Diagram
 ![Alt text](./architecture.png "Architecture")
 
@@ -46,6 +38,17 @@ API for controlling the robot simulation
 Refer to the [REST.md](REST.md) file for details
 
 #
+###### Test & Coverage
+To run test and generate code coverage report 
+```sh
+npm run test  
+```
+> coverage folder is created, open coverage/index.html to view the report
+
+#
 ###### End-user Test
 Using postman to test for API calls.
-Please find the collection and run test in "end_user_test" folder.
+Find the collection and run test in "end_user_test" folder.
+
+#
+######This application is tested on node=v6.10.3
