@@ -12,7 +12,9 @@ describe("dataValidation", function() {
             expect(dataValidation.isValidBoard("2x5")).equal(true);
             expect(dataValidation.isValidBoard("2x9")).equal(true);
             expect(dataValidation.isValidBoard("2x2")).equal(true);
+        });
     
+        it("return false for incorrect board size", function() {
             expect(dataValidation.isValidBoard("1x5")).equal(false);
             expect(dataValidation.isValidBoard("5X5")).equal(false);
             expect(dataValidation.isValidBoard("10x10")).equal(false);
@@ -28,7 +30,9 @@ describe("dataValidation", function() {
             expect(dataValidation.isValidLocation("2x5", 1, 1, "E")).equal(true);
             expect(dataValidation.isValidLocation("2x9", 2, 9, "W")).equal(true);
             expect(dataValidation.isValidLocation("2x2", 2, 2, "N")).equal(true);
-            
+        });
+    
+        it("return false for incorrect location outside of board size", function() {
             expect(dataValidation.isValidLocation("5x5", 0, 0, "NS")).equal(false);
             expect(dataValidation.isValidLocation("9X9", 10, 0, "E")).equal(false);
             expect(dataValidation.isValidLocation("2x5", 3, 3, "N")).equal(false);
@@ -43,7 +47,9 @@ describe("dataValidation", function() {
             expect(dataValidation.isValidActionCmd("left")).equal(true);
             expect(dataValidation.isValidActionCmd("right")).equal(true);
             expect(dataValidation.isValidActionCmd("back")).equal(true);
-
+        });
+    
+        it("return false for incorrect action command", function() {
             expect(dataValidation.isValidActionCmd("MOVE")).equal(false);
             expect(dataValidation.isValidActionCmd("up")).equal(false);
             expect(dataValidation.isValidActionCmd("m")).equal(false);
@@ -51,7 +57,7 @@ describe("dataValidation", function() {
     });
     
     describe("test for \"isValidMsgQueueScheme\" function", function() {
-        it("return true for correct message queue format", function() {
+        it("return true for correct format", function() {
             let msg = {
                 nameTag: "robot1",
                 cmd: "back",
@@ -68,6 +74,23 @@ describe("dataValidation", function() {
                 change: "positionY"
             };
             expect(dataValidation.isValidMsgQueueScheme(msg)).to.deep.equal(true);
+        });
+        
+        it("return false for wrong format", function() {
+            let msg = {
+                nameTag: "robot1",
+                cmd: "back",
+                current: {
+                    positionX: 0,
+                    positionY: 3
+                },
+                new: {
+                    positionX: 0,
+                    positionY: 2
+                },
+                change: "positionY"
+            };
+            expect(dataValidation.isValidMsgQueueScheme(msg)).to.deep.equal(false);
             
             msg = {
                 nameTag: "robot1",

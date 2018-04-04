@@ -43,49 +43,44 @@ function update (msg) {
         
         // validate msg scheme
         if (dataValidation.isValidMsgQueueScheme(robotMsg)) {
-            try {
-                let dynamoDAO = require("../../database/dynamoDAO");
-                dynamoDAO.read(robotMsg.nameTag, "all").then(function (robot) {
-                    winston.log("verbose", "dynamoDAO read", robot);
+
+            let dynamoDAO = require("../../database/dynamoDAO");
+            dynamoDAO.read(robotMsg.nameTag, "all").then(function (robot) {
+                winston.log("verbose", "dynamoDAO read", robot);
+                
+                // [1] processing only when powerState is online
+                if (robot.powerState === constant.POWER_STATE_VALUE.ONLINE) {
                     
-                    // [1] processing only when powerState is online
-                    if (robot.powerState === constant.POWER_STATE_VALUE.ONLINE) {
+                    // [2] check is correct current location
+                    if (robot.positionX === robotMsg.current.positionX &&
+                        robot.positionY === robotMsg.current.positionY &&
+                        robot.direction === robotMsg.current.direction) {
                         
-                        // [2] check is correct current location
-                        if (robot.positionX === robotMsg.current.positionX &&
-                            robot.positionY === robotMsg.current.positionY &&
-                            robot.direction === robotMsg.current.direction) {
+                        // [3] update db with new change
+                        dynamoDAO.update(robotMsg.nameTag,
+                            robotMsg.change,
+                            robotMsg.new[robotMsg.change]).then(function () {
+                            resolve("OK");
                             
-                            // [3] update db with new change
-                            dynamoDAO.update(robotMsg.nameTag,
-                                robotMsg.change,
-                                robotMsg.new[robotMsg.change]).then(function () {
-                                resolve("OK");
-                                
-                            }).catch(function () {
-                                reject("UPDATE DB FAIL");
-                                
-                            }).then(function () {
-                                // [4] delete sqs queue for success db update
-                                let sqsTaskManager = require("../../sqs/sqsTaskManager");
-                                sqsTaskManager.deleteMsg(msg).catch(function () {
-                                    // do nothing
-                                });
+                        }).catch(function () {
+                            reject("UPDATE DB FAIL");
+                            
+                        }).then(function () {
+                            // [4] delete sqs queue for success db update
+                            let sqsTaskManager = require("../../sqs/sqsTaskManager");
+                            sqsTaskManager.deleteMsg(msg).catch(function () {
+                                // do nothing
                             });
-                            
-                        } else {
-                            resolve("NG");
-                        }
+                        });
                         
                     } else {
-                        resolve("OFFLINE");
+                        resolve("NG");
                     }
-                });
-                
-            } catch (err) {
-                winston.log("error", "update error:", err);
-                reject("ERROR");
-            }
+                    
+                } else {
+                    resolve("OFFLINE");
+                }
+            });
             
         } else {
             resolve("INVALID");

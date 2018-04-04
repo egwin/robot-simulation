@@ -1,5 +1,4 @@
 const AWS = require("aws-sdk"); // eslint-disable-line import/no-extraneous-dependencies
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const winston = require("winston");
 winston.level = process.env.LOG_LEVEL;
 
@@ -29,6 +28,7 @@ let dynamoDAO = (function () {
             
             return new Promise(function(resolve, reject) {
                 // write to the database
+                const dynamoDb = new AWS.DynamoDB.DocumentClient();
                 dynamoDb.put(params, function(error) {
                     if (error) {
                         winston.log("error", "dynamoDAO create, put error", error);
@@ -36,7 +36,7 @@ let dynamoDAO = (function () {
                         return reject("NG");
                     } else {
                         winston.log("verbose", "dynamoDAO create, put successfully");
-                        return resolve("OK")
+                        return resolve("OK");
                     }
                 });
             });
@@ -62,6 +62,7 @@ let dynamoDAO = (function () {
     
             return new Promise(function(resolve, reject) {
                 // fetch from the database
+                const dynamoDb = new AWS.DynamoDB.DocumentClient();
                 dynamoDb.get(params, function(error, result) {
                     if (error) {
                         winston.log("error", "dynamoDAO read, get error", error);
@@ -69,7 +70,7 @@ let dynamoDAO = (function () {
                         return reject("NG");
                     } else {
                         winston.log("verbose", "dynamoDAO read, get successfully item:", result.Item);
-                        return resolve(result.Item)
+                        return resolve(result.Item);
                     }
                 });
             });
@@ -94,6 +95,7 @@ let dynamoDAO = (function () {
     
             return new Promise(function(resolve, reject) {
                 // update in the database
+                const dynamoDb = new AWS.DynamoDB.DocumentClient();
                 dynamoDb.update(params, function(error) {
                     if (error) {
                         winston.log("error", "dynamoDAO update error", error);
@@ -101,7 +103,7 @@ let dynamoDAO = (function () {
                         return reject(error);
                     } else {
                         winston.log("verbose", "dynamoDAO update successfully");
-                        return resolve("OK")
+                        return resolve("OK");
                     }
                 });
             });
@@ -117,6 +119,7 @@ let dynamoDAO = (function () {
     
             return new Promise(function(resolve, reject) {
                 // update in the database
+                const dynamoDb = new AWS.DynamoDB.DocumentClient();
                 dynamoDb.delete(params, function(error) {
                     if (error) {
                         winston.log("error", "dynamoDAO delete error", error);
@@ -124,7 +127,7 @@ let dynamoDAO = (function () {
                         return reject("NG");
                     } else {
                         winston.log("verbose", "dynamoDAO delete successfully");
-                        return resolve("OK")
+                        return resolve("OK");
                     }
                 });
             });

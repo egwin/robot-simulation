@@ -1,5 +1,4 @@
 const AWS = require("aws-sdk"); // eslint-disable-line import/no-extraneous-dependencies
-const SQS = new AWS.SQS();
 const winston = require("winston");
 winston.level = process.env.LOG_LEVEL;
 
@@ -16,6 +15,7 @@ let sqsTaskManager = (function () {
     
             return new Promise(function(resolve, reject) {
                 // send sqs msg
+                const SQS = new AWS.SQS();
                 SQS.sendMessage(params, function (err, data) {
                     if (err) {
                         winston.log("error", "SqsTaskManager sendMsg error", err);
@@ -38,6 +38,7 @@ let sqsTaskManager = (function () {
     
             return new Promise(function(resolve, reject) {
                 // receive sqs msg
+                const SQS = new AWS.SQS();
                 SQS.receiveMessage(params, function (err, res) {
                     if (err) {
                         winston.log("error", "SqsTaskManager receiveMsg error", err);
@@ -59,6 +60,7 @@ let sqsTaskManager = (function () {
     
             return new Promise(function(resolve, reject) {
                 // delete sqs msg
+                const SQS = new AWS.SQS();
                 SQS.deleteMessage(params, function (err, data) {
                     if (err) {
                         winston.log("error", "SqsTaskManager deleteMsg error", err);

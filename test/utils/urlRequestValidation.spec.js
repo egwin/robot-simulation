@@ -6,8 +6,9 @@ let constant = require("../../src/utils/constant");
 
 describe("urlRequestValidation", function() {
     
-    describe("test for \"urlRequestValidation\" function", function() {
-        it("get the correct result from url parsing", function() {
+    describe("test for endpoint app", function() {
+        
+        it("app power url parsing", function () {
             // test endpoint power
             let event = {
                 pathParameters: {
@@ -33,9 +34,11 @@ describe("urlRequestValidation", function() {
                 },
                 cmd: []
             });
+        });
     
+        it("app start url parsing", function () {
             // test endpoint start
-            event = {
+            let event = {
                 pathParameters: {
                     endpoint: "start"
                 },
@@ -61,9 +64,67 @@ describe("urlRequestValidation", function() {
                 },
                 cmd: []
             });
+        });
     
+        it("app start url parsing, with invalid board size and place", function () {
+            // test endpoint start
+            let event = {
+                pathParameters: {
+                    endpoint: "start"
+                },
+                queryStringParameters: {
+                    ntag: "robot2",
+                    bsize: "10x8",
+                    place: "10,2,N"
+                }
+            };
+            expect(urlRequestValidation(event)).to.deep.equal({
+                isValid: false,
+                nameTag: "robot2",
+                boardSize: constant.APP_DEFAULT.BOARD_SIZE,
+                powerState: constant.POWER_STATE_VALUE.ONLINE,
+                endpoint: constant.API_ENDPOINT.APP_START,
+                location: {
+                    positionX: -1,
+                    positionY: -1,
+                    direction: undefined
+                },
+                report: {
+                    showAll: false
+                },
+                cmd: []
+            });
+        });
+        
+        it("app start url parsing, with null query params", function () {
             // test endpoint end
-            event = {
+            let event = {
+                pathParameters: {
+                    endpoint: "start"
+                },
+                queryStringParameters: null
+            };
+            expect(urlRequestValidation(event)).to.deep.equal({
+                isValid: false,
+                nameTag: "robot1",
+                boardSize: constant.APP_DEFAULT.BOARD_SIZE,
+                powerState: constant.POWER_STATE_VALUE.ONLINE,
+                endpoint: constant.API_ENDPOINT.APP_START,
+                location: {
+                    positionX: -1,
+                    positionY: -1,
+                    direction: undefined
+                },
+                report: {
+                    showAll: false
+                },
+                cmd: []
+            });
+        });
+        
+        it("app end url parsing", function () {
+            // test endpoint end
+            let event = {
                 pathParameters: {
                     endpoint: "end"
                 },
@@ -87,9 +148,15 @@ describe("urlRequestValidation", function() {
                 },
                 cmd: []
             });
+        });
     
+    });
+    
+    describe("test for endpoint report", function() {
+    
+        it("report url parsing", function () {
             // test endpoint report
-            event = {
+            let event = {
                 pathParameters: {
                     endpoint: "report"
                 },
@@ -114,9 +181,39 @@ describe("urlRequestValidation", function() {
                 },
                 cmd: []
             });
+        });
     
+        it("report url parsing, with no query params", function () {
+            // test endpoint report
+            let event = {
+                pathParameters: {
+                    endpoint: "report"
+                }
+            };
+            expect(urlRequestValidation(event)).to.deep.equal({
+                isValid: false,
+                nameTag: constant.APP_DEFAULT.NAME_TAG,
+                boardSize: constant.APP_DEFAULT.BOARD_SIZE,
+                powerState: constant.POWER_STATE_VALUE.ONLINE,
+                endpoint: undefined,
+                location: {
+                    positionX: -1,
+                    positionY: -1,
+                    direction: undefined
+                },
+                report: {
+                    showAll: false
+                },
+                cmd: []
+            });
+        });
+    });
+    
+    describe("test for endpoint action", function() {
+    
+        it("action url parsing", function () {
             // test endpoint action
-            event = {
+            let event = {
                 pathParameters: {
                     endpoint: "action"
                 },
@@ -140,9 +237,37 @@ describe("urlRequestValidation", function() {
                 },
                 cmd: ["left", "right"]
             });
+        });
     
+        it("action url parsing, with null query params", function () {
+            // test endpoint action
+            let event = {
+                pathParameters: {
+                    endpoint: "action"
+                },
+                queryStringParameters: null
+            };
+            expect(urlRequestValidation(event)).to.deep.equal({
+                isValid: false,
+                nameTag: constant.APP_DEFAULT.NAME_TAG,
+                boardSize: constant.APP_DEFAULT.BOARD_SIZE,
+                powerState: constant.POWER_STATE_VALUE.ONLINE,
+                endpoint: constant.API_ENDPOINT.APP_ACTION,
+                location: {
+                    positionX: -1,
+                    positionY: -1,
+                    direction: undefined
+                },
+                report: {
+                    showAll: false
+                },
+                cmd: []
+            });
+        });
+        
+        it("wrong endpoint url", function () {
             // test endpoint xxx (non-exist)
-            event = {
+            let event = {
                 pathParameters: {
                     endpoint: "xxx"
                 },

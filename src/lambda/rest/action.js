@@ -31,14 +31,15 @@ module.exports.cmd = function(event, context, callback) {
                     });
     
                 }).then(function (response) {
-                    callback(null, {
-                        statusCode: 202,
-                        body: JSON.stringify({
-                            msg: "Robot is executing the cmd >> " + req.cmd,
-                            response: response
-                        })
-                    });
-                    
+                    if (response !== undefined) {
+                        callback(null, {
+                            statusCode: 202,
+                            body: JSON.stringify({
+                                msg: "Robot is executing the cmd >> " + req.cmd,
+                                response: response
+                            })
+                        });
+                    }
                 });
                 break;
         }
