@@ -22,11 +22,20 @@ aws_secret_access_key = XXXXXXX...
 
 #
 ###### Deployment
-Deploy all the functions (eg: gateway, lambda, cloudwatch, sqs, dynamodb) into AWS
+Deploy all the services (eg: gateway, lambda, cloudwatch, sqs, dynamodb) into AWS
 ```sh
 serverless deploy
 ```
-> * need manual update the stream (streamFunction event) in serverless.yml and then "serverless deploy" again (due to serverless problem)
+Before do the "serverless deploy", there are two manual actions to fully deploy all the services. (due to serverless problem)
+> DynamoDB event stream issue
+> 1) clear the input in of DynamoDB event stream in serverless.yml file (streamFunction->events->stream) then run "serverless deploy"
+> 2) manual enable the stream in AWS console (in the overview of DynamoDB, select the manage stream and choose "new and old images" type)
+> 3) then copy the latest stream ARN into serverless.yml (eg: arn:aws:dynamodb:ap-southeast-1:xxxxxxxx:table/robot-dev/stream/2018-03-29T08:46:38.993)
+> 4) "serverless deploy" again to enable the DynamoDB event stream
+ 
+> Get account id for SQS issue (temporary cannot get by coding)
+> 1) get the account id from AWS console and replace the account id in sqsTaskManager.js file (eg: 288329xxxxxx)
+> 2) then "serverless deploy" again to fully enable all the services
 
 #
 ###### Architecture Diagram
