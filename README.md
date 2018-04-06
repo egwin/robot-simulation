@@ -13,11 +13,18 @@ npm install
 ###### Setup
 To deploy to the AWS by using serverless framework, you need to have an access 'aws_access_key_id' and 'aws_secret_access_key'.
 So, you need to create AWS account and change the profile **robotsimulate** in serverless.yml
--eg: file in "C:/Users/xxx/aws/credentials"
+-eg: file in "C:/Users/xxx/.aws/credentials"
 ```sh 
 [robotsimulate]
 aws_access_key_id = XXXXXXX...
 aws_secret_access_key = XXXXXXX...
+```
+Also, update the config file by creating new profile
+-eg: file in "C:/Users/xxx/.aws/config"
+```sh
+[profile robotsimulate]
+output = json
+region = ap-southeast-1
 ```
 
 #
